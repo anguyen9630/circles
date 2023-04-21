@@ -21,10 +21,12 @@
     "next-auth": "^4.21.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-icons": "^4.8.0",
     "superjson": "1.12.2",
     "zod": "^3.21.4"
   },
   "devDependencies": {
+    "@svgr/webpack": "^7.0.0",
     "@types/eslint": "^8.21.3",
     "@types/node": "^18.15.5",
     "@types/prettier": "^2.7.2",

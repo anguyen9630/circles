@@ -1,10 +1,17 @@
 import Logo from '/public/circles_logo.svg'
 import { GiHamburgerMenu } from 'react-icons/gi'
+import { User } from '@prisma/client';
 
-import { signIn, signOut, useSession } from "next-auth/react";
+import { signIn, signOut } from "next-auth/react";
 
-export const BannerContent = () => {
-    const { data: sessionData } = useSession();
+interface ProtectedContentProps
+{
+    user : User | null;
+};
+
+export const BannerContent : React.FC<ProtectedContentProps> = ( {user} ) => {
+
+
 
     return (
         <header className="fixed top-0 left-0 right-0 backdrop-blur flex w-full h-20 shadow-sm shadow-black">
@@ -21,8 +28,8 @@ export const BannerContent = () => {
             <div className="flex w-1/3 justify-end items-center pr-3  ">
                 <button 
                     className='hover:bg-slate-600 w-20 h-14 rounded-2xl font-bold active:bg-slate-700 duration-200'
-                    onClick={sessionData ? () => void signOut() : () => void signIn()}>
-                    {sessionData ? "Sign out" : "Sign in"}
+                    onClick={user ? () => void signOut() : () => void signIn()}>
+                    {user ? "Sign out" : "Sign in"}
                 </button>
                 
             </div>

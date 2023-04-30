@@ -28,5 +28,10 @@ const config = {
     return config;
   },
 
+  images: {
+    domains: ['i.ibb.co'],
+  },
+
+
 };
 export default config;

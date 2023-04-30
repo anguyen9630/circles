@@ -2,7 +2,7 @@
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
@@ -11,82 +11,85 @@ datasource db {
 }
 
 
-model Example {
-    id        String   @id @map("_id") @default(cuid())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-}
-
 model Post {
-    id          String   @id @map("_id") @default(cuid())
-    userId      String
+  id     String @id @default(cuid()) @map("_id")
+  userId String
 
-    content     String
-    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  content String
+  user    User   @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    likes       Like[]
-    
-    createdAt   DateTime @default(now())
-    modifiedAt  DateTime @updatedAt
+  likes Like[]
+
+  replyToId String?
+  replyTo   Post?   @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+  replies   Post[]  @relation("ReplyTo")
+
+  createdAt    DateTime @default(now())
+  modifiedAt   DateTime @updatedAt
+  modifiedFlag Boolean  @default(false)
 }
 
 model Like {
-    id          String   @id @map("_id") @default(cuid())
-    userId      String
-    postId      String   
+  id     String @id @default(cuid()) @map("_id")
+  postId String
 
-    post        Post     @relation(fields: [postId], references: [id], onDelete: Cascade)
-    user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  post Post @relation(fields: [postId], references: [id], onDelete: NoAction, onUpdate: NoAction)
+
+  User   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId String
 }
-
-
 
 // Necessary for Next auth
 model Account {
-    id                String  @id @map("_id") @default(cuid())
-    userId            String
-    type              String
-    provider          String
-    providerAccountId String
-    refresh_token     String? // @db.Text
-    access_token      String? // @db.Text
-    expires_at        Int?
-    token_type        String?
-    scope             String?
-    id_token          String? // @db.Text
-    session_state     String?
-    user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id                String  @id @default(cuid()) @map("_id")
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String? // @db.Text
+  access_token      String? // @db.Text
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String? // @db.Text
+  session_state     String?
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
 
-    @@unique([provider, providerAccountId])
+  @@unique([provider, providerAccountId])
 }
 
 model Session {
-    id           String   @id @map("_id") @default(cuid())
-    sessionToken String   @unique
-    userId       String
-    expires      DateTime
-    user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  id           String   @id @default(cuid()) @map("_id")
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
 model User {
-    id            String    @id @map("_id") @default(cuid())
-    name          String?
-    email         String?   @unique
-    emailVerified DateTime?
-    image         String?
-    
-    accounts      Account[]
-    sessions      Session[]
+  id            String    @id @default(cuid()) @map("_id")
+  name          String?
+  email         String?   @unique
+  emailVerified DateTime?
+  image         String?
 
-    posts         Post[]
-    likes         Like[]
+  accounts Account[]
+  sessions Session[]
+
+  // Extra fields
+  posts        Post[]
+  likes        Like[]    
+  userTag      String?    @unique 
+  profileImage String?    
+  bio          String     @default("")        
+  interests    String[]
 }
 
 model VerificationToken {
-    id         String   @id @map("_id") @default(cuid())
-    identifier String
-    token      String   @unique
-    expires    DateTime
+  id         String   @id @default(cuid()) @map("_id")
+  identifier String
+  token      String   @unique
+  expires    DateTime
 
-    @@unique([identifier, token])
+  @@unique([identifier, token])
 }

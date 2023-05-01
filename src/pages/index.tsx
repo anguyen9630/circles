@@ -9,9 +9,9 @@ import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "~/utils/api";
 import { BannerContent } from "~/components/banner";
-import { CreatePostButton } from "~/components/post_button";
-import { CreatePostForm } from "~/components/post_form";
-import { PostViewer } from "~/components/post_viewer";
+import { CreatePostButton } from "~/components/post/button";
+import { CreatePostForm } from "~/components/post/form";
+import { PostViewer } from "~/components/post/viewer";
 
 
 
@@ -21,6 +21,9 @@ const Home: NextPage = () => {
   
   const user = api.user.getUser.useQuery().data || null;
   const [postWizard, setPostWizard] = useState(false);
+  const [editPost, setEditPost] = useState(false);
+  const [postContent, setPostContent] = useState("");
+  const [postId, setPostId] = useState("");
 
   const posts = api.post.getAll.useQuery().data || [];
 
@@ -37,11 +40,27 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen bg-slate-800 justify-center duration-300">
 
-        <CreatePostForm formState={postWizard} setFormState={setPostWizard}/>
+        <CreatePostForm 
+          formState={postWizard} 
+          setFormState={setPostWizard} 
+          editFlag={editPost} 
+          content={postContent} 
+          setContent={setPostContent} 
+          postID={postId} 
+          setPostID={setPostId}
+        />
+        
         <BannerContent user={user}/>
-        <CreatePostButton user={user} formState={postWizard} setFormState={setPostWizard} />
+        <CreatePostButton user={user} formState={postWizard} setFormState={setPostWizard} setEditFlag={setEditPost} />
         <div className="flex min-h-screen pt-20 w-11/12 md:w-4/6 lg:w-1/2 duration-300 overflow-auto">
-          <PostViewer sessionUser={user} posts={posts}/>
+          <PostViewer 
+            sessionUser={user} 
+            posts={posts}
+            setFormState={setPostWizard} 
+            setFormFlag={setEditPost}
+            setFormPostId={setPostId}
+            setFormInput={setPostContent}
+          />
         </div>
       </main>
     </>

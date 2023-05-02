@@ -32,7 +32,7 @@ export const userRouter = createTRPCRouter({
         if (!user.name) {
             user.name = "Anonymous";
             userModified = true;
-        };
+        }
 
         // If the user does not have an circle profile then create one  
         if (!user.profileImage || !user.userTag) {
@@ -55,7 +55,7 @@ export const userRouter = createTRPCRouter({
             user.userTag      = usertagGenerator;
 
             userModified = true;
-        };
+        }
         
         // Update the user profile if it has been modified
         if (userModified){

@@ -1,6 +1,6 @@
     
 
-import {Like, Post, User} from "@prisma/client";
+import type {Like, Post, User} from "@prisma/client";
 
 
 import { SinglePost } from './post';
@@ -16,7 +16,7 @@ interface PostViewerProps
     setFormFlag     : React.Dispatch<React.SetStateAction<boolean>>;
     setFormPostId   : React.Dispatch<React.SetStateAction<string>>;
     setFormInput    : React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
 
 export const PostViewer : React.FC<PostViewerProps> = ( {posts, sessionUser, setFormState, setFormFlag, setFormPostId, setFormInput} ) => {

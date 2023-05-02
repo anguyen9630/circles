@@ -1,6 +1,8 @@
-import Heart from "react-heart"
+//import Heart from "react-heart"
 
-import {Like, Post, User} from "@prisma/client";
+import type {Like, Post, User} from "@prisma/client";
+
+import { AiFillHeart } from 'react-icons/ai'
 
 import ConfettiExplosion from 'react-confetti-explosion'
 
@@ -25,9 +27,9 @@ interface PostProps
     setFormFlag     : React.Dispatch<React.SetStateAction<boolean>>;
     setFormPostId   : React.Dispatch<React.SetStateAction<string>>;
     setFormInput    : React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
-function likeButtonFunction(like : boolean, setLike : React.Dispatch<React.SetStateAction<boolean>>, likeCount : number, setLikeCount : React.Dispatch<React.SetStateAction<number>>, setThrowConfetti : React.Dispatch<React.SetStateAction<boolean>>){
+function likeButtonFunction(like : boolean, setLike : React.Dispatch<React.SetStateAction<boolean>>, likeCount : number, setLikeCount : React.Dispatch<React.SetStateAction<number>>, setThrowConfetti : React.Dispatch<React.SetStateAction<boolean>>) : void{
 
     if (like) {
         setLike(false);
@@ -101,18 +103,18 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
                 </div>
 
                 <div className="w-full flex gap-12 md:gap-20 lg:gap-32">
-                    <div className="flex items-start text-gray-400 gap-1 rounded-full" >
-                        <Heart isActive={like} 
+                    <button className="flex items-start text-gray-400 gap-1 rounded-full" >
+                        <AiFillHeart 
                             onClick={()=>{
                                     likeButtonFunction(like, setLike, likeCount, setLikeCount, setThrowConfetti);
                                     if (like && sessionUser) removeLike({likeId: post.id.concat(sessionUser.id)});
                                     else addLike({postId: post.id});
                                 }
                             } 
-                            className="relative w-4 h-4" inactiveColor="white" animationScale={1.5} animationDuration={0.3} animationTrigger='both'/>
+                            className={`relative w-4 h-4 hover:scale-125 active:scale-150 hover:text-red-500 ${like? 'text-red-500' : 'text-gray-400'} duration-100`}/>
                         {<p className={`duration-200 text-sm ${like? 'text-rose-700' : 'text-gray-400'} `}>{likeCount}</p>}
                         {throwConfetti && <ConfettiExplosion className="absolute" force={0.6} duration={2000} particleCount={10} width={200}/>}
-                    </div>
+                    </button>
                     <button><BsFillChatDotsFill className={`h-4 w-4 hover:scale-150 hover:text-violet-500 duration-200`}/></button>
                 </div>
 

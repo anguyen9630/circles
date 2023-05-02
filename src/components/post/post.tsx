@@ -110,10 +110,10 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
                     <button className="flex items-start text-gray-400 gap-1 rounded-full" >
                         <AiFillHeart 
                             onClick={()=>{
-                                    if (sessionUser){
-                                    likeButtonFunction(like, setLike, likeCount, setLikeCount, setThrowConfetti);
-                                    if (like) removeLike({likeId: post.id.concat(sessionUser.id)});
-                                    else addLike({postId: post.id})};
+                                        if (sessionUser){
+                                        likeButtonFunction(like, setLike, likeCount, setLikeCount, setThrowConfetti)
+                                        if (like) removeLike({likeId: post.id.concat(sessionUser.id)})
+                                        else addLike({postId: post.id})}
                                 }
                             } 
                             className={`relative w-4 h-4 hover:scale-125 active:scale-150 hover:text-red-500 ${like? 'text-red-500' : 'text-gray-400'} duration-100`}/>

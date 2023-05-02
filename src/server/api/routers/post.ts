@@ -1,4 +1,3 @@
-import { User } from "@prisma/client";
 import { TRPCClientError } from "@trpc/client";
 import { z } from "zod";
 
@@ -11,13 +10,6 @@ import {
 
 
 export const postRouter = createTRPCRouter({
-    hello: publicProcedure
-      .input(z.object({ text: z.string() }))
-      .query(({ input }) => {
-        return {
-          greeting: `Hello ${input.text}`,
-        };
-      }),
       
     
     getAll: publicProcedure.query(async ({ ctx }) => {

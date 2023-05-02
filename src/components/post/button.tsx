@@ -1,6 +1,6 @@
 import { FaPencilAlt } from 'react-icons/fa'
 import { signIn } from "next-auth/react";
-import { User } from '@prisma/client';
+import type { User } from '@prisma/client';
 import React from 'react';
 
 interface ButtonProps 
@@ -9,12 +9,12 @@ interface ButtonProps
     formState : boolean;
     setFormState : React.Dispatch<React.SetStateAction<boolean>>;
     setEditFlag : React.Dispatch<React.SetStateAction<boolean>>;
-};
+}
 
 interface ProtectedContentProps
 {
     user : User | null;
-};
+}
 
 
 export const ButtonContent : React.FC<ProtectedContentProps> = ( {user} ) => {
@@ -26,14 +26,14 @@ export const ButtonContent : React.FC<ProtectedContentProps> = ( {user} ) => {
 
 function ButtonClickFunction( user : User | null, formState : boolean,
     setFormState: React.Dispatch<React.SetStateAction<boolean>>, 
-    setEditFlag: React.Dispatch<React.SetStateAction<boolean>>){
+    setEditFlag: React.Dispatch<React.SetStateAction<boolean>>) : void{
 
     if ( user ) {
         setFormState(!formState);
         setEditFlag(false);
     }
     else signIn();
-};
+}
 
 
 export const CreatePostButton : React.FC<ButtonProps> = ( {user, formState, setFormState, setEditFlag} ) => {

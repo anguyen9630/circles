@@ -14,7 +14,7 @@ interface PostWizardProps {
     setPostID : React.Dispatch<React.SetStateAction<string>>;
     content  : string;
     setContent : React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
  function resetForm (setFormState : React.Dispatch<React.SetStateAction<boolean>>, 
     setPostID : React.Dispatch<React.SetStateAction<string>>,
@@ -24,7 +24,7 @@ interface PostWizardProps {
             setPostID("");
             setContent("");
         }, 200);
- };
+ }
 
 
 export const CreatePostForm : React.FC<PostWizardProps> = ( {formState, setFormState, editFlag, postID, setPostID, content, setContent} ) => {

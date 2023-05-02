@@ -4,7 +4,7 @@ import { FaWrench } from 'react-icons/fa'
 import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 
-import {Post} from "@prisma/client";
+import type { Post } from "@prisma/client";
 import { api } from '~/utils/api';
 
 interface ContextMenuProps
@@ -15,7 +15,7 @@ interface ContextMenuProps
     setFormState    : React.Dispatch<React.SetStateAction<boolean>>;
     setFormPostId   : React.Dispatch<React.SetStateAction<string>>;
     setFormInput    : React.Dispatch<React.SetStateAction<string>>;
-};
+}
 
 
 export const ContextMenu : React.FC<ContextMenuProps> = ({post, setFormState, setFormFlag, setFormPostId, setFormInput}) => {

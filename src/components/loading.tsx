@@ -1,5 +1,3 @@
-import { Transition } from "@headlessui/react";
-
 export const LoadingSpinnerPage = () => {
     return(
         <div className="absolute flex h-screen w-screen bg-slate-800 justify-center items-center">

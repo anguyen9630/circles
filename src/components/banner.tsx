@@ -1,13 +1,13 @@
-import Logo from '/public/circles_logo.svg'
-import { GiHamburgerMenu } from 'react-icons/gi'
-import { User } from '@prisma/client';
+import Logo from '/public/circles_logo.svg';
+import { GiHamburgerMenu } from 'react-icons/gi';
+import type { User } from '@prisma/client';
 
 import { signIn, signOut } from "next-auth/react";
 
 interface ProtectedContentProps
 {
     user : User | null;
-};
+}
 
 export const BannerContent : React.FC<ProtectedContentProps> = ( {user} ) => {
 

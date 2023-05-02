@@ -70,16 +70,20 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
     dayjs.extend(relativeTime);
 
     return (
-        <div key={post.id} className={`w-full bg-gray-700 hover:bg-gray-900 duration-300 h-fit border-b-2 p-3 flex gap-3`}>
-            <button className="h-14 w-14">
-                <Image src={post.user.profileImage || ""} alt="user image" width={1050} height={1050} className=" rounded-full" />
-            </button>
-            <div className="w-full">
+        <div key={post.id} className={`w-full bg-gray-700 hover:bg-gray-900 duration-300 h-fit border-b-2 p-3 flex justify-between`}>
+            <div className="static w-1/6 md:w-2/12 md:static flex md:justify-center ">
+                <button className=" h-10 w-10 md:h-14 md:w-14">
+                    <Image src={post.user.profileImage || ""} alt="user image" width={1050} height={1050} className=" rounded-full" />
+                </button>
+            </div>
+            <div className="w-5/6 md:w-10/12">
                 <div className="flex w-full justify-between">
-                    <div className="flex gap-1 items-center cursor-pointer ">
-                        <p className="text-gray-300 font-semibold hover:brightness-200 duration-200">{post.user.name}</p>
-                        <p className="text-gray-400 font-bold">·</p>
-                        <p className="text-gray-400 text-sm hover:brightness-200 duration-200">@{post.user.userTag}</p>
+                    <div className="flex gap-1 items-center cursor-pointer">
+                        <p className="text-gray-300 w-fit font-semibold text-sm md:text-base hover:brightness-200 duration-200">{post.user.name}
+                        {window.innerWidth > 768 && <span className="text-gray-400 font-bold"> · </span>}
+                        {window.innerWidth < 768 && <br/>}
+                        <span className="text-gray-400 font-bold text-xs truncate">@{post.user.userTag}</span></p>
+                        
                     </div>
 
                     <div className="relative flex justify-end">
@@ -94,7 +98,7 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
                     </div>
                     
                 </div>
-                <div className="w-full text-lg">
+                <div className="w-full md:text-lg justify-end break-words">
                 {post.content}
                 </div>
                 <div className="text-gray-400 text-xs pb-2">

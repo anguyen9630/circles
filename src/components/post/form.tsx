@@ -56,7 +56,7 @@ export const CreatePostForm : React.FC<PostWizardProps> = ( {formState, setFormS
                 ()=>{
                     resetForm(setFormState, setPostID, setContent);
                 }} 
-                className="fixed z-50 top-0 backdrop-blur-sm h-screen w-screen flex justify-center items-center">
+                className="fixed z-40 top-0 backdrop-blur-sm h-screen w-screen flex justify-center items-center">
                 <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-200"

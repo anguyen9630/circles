@@ -1,4 +1,4 @@
-import Heart from "react-heart"
+import Heart from "../react_heart"
 
 import {Like, Post, User} from "@prisma/client";
 

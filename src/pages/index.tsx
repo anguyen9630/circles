@@ -1,6 +1,6 @@
 import { type NextPage } from "next";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import Head from "next/head";
 
@@ -33,6 +33,8 @@ const Home: NextPage = () => {
   const [editPost, setEditPost] = useState(false);
   const [postContent, setPostContent] = useState("");
   const [postId, setPostId] = useState("");
+
+  //useEffect(() => {
   
   // Get user
   const { data : user, isLoading : userIsLoading } = api.user.getUser.useQuery();

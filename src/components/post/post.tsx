@@ -71,12 +71,12 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
 
     return (
         <div key={post.id} className={`w-full bg-gray-700 hover:bg-gray-900 duration-300 h-fit border-b-2 p-3 flex justify-between`}>
-            <div className="static w-1/6 md:w-2/12 md:static flex md:justify-center ">
-                <button className=" h-10 w-10 md:h-14 md:w-14">
+            <div className="static w-1/6 md:w-1/12 md:static flex">
+                <button className=" h-10 w-10 md:h-12 md:w-12">
                     <Image src={post.user.profileImage || ""} alt="user image" width={1050} height={1050} className=" rounded-full" />
                 </button>
             </div>
-            <div className="w-5/6 md:w-10/12">
+            <div className="w-5/6 md:w-11/12">
                 <div className="flex w-full justify-between">
                     <div className="flex gap-1 items-center cursor-pointer">
                         <p className="text-gray-300 w-fit font-semibold text-sm md:text-base hover:brightness-200 duration-200">{post.user.name}

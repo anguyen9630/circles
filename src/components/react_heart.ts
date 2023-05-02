@@ -4,15 +4,15 @@ import React from "react";
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 export default function Heart({
-  isActive,
-  onClick,
+  isActive=false,
+  onClick=() => {},
   animationTrigger = "click",
   animationScale = 1.05,
   animationDuration = 0.05,
   inactiveColor = "black",
   activeColor = "red",
-  className,
-  style
+  className = "",
+  style={}
 }) {
   return /*#__PURE__*/React.createElement(Svg, {
     onClick: () => onClick(),

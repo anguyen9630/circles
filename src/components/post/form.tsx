@@ -70,7 +70,7 @@ export const CreatePostForm : React.FC<PostWizardProps> = ( {formState, setFormS
                         <Dialog.Title as="h2" className="font-bold pb-2 text-xl">{editFlag ? 'Edit post' :'Create a new post'}</Dialog.Title>
                         <textarea 
                             placeholder="Share with the world!" 
-                            className="px-4 py-2 h-72 md:h-36 font-semibold bg-transparent w-full focus:outline-none"
+                            className="px-4 py-2 h-72 md:h-36 font-semibold bg-transparent w-full focus:outline-none resize-none"
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
                             disabled={createIsPosting}
@@ -83,21 +83,21 @@ export const CreatePostForm : React.FC<PostWizardProps> = ( {formState, setFormS
                             
                             {!editFlag && 
                                 <button 
-                                    className="text-sky-400"
+                                    className="text-violet-600"
                                     disabled={createIsPosting}
                                     onClick={() => postMutate({content: content})}
                                 >
-                                    <FaPaperPlane className="h-6 w-6 md:h-8 md:w-8 hover:brightness-75 active:brightness-50 duration-300"/>
+                                    <FaPaperPlane className="h-6 w-6 md:h-8 md:w-8 hover:brightness-75 active:brightness-50 duration-200"/>
                                 </button>
                             }
                             
                             {editFlag && 
                                 <button 
-                                    className="text-sky-400"
+                                    className="text-violet-600"
                                     disabled={editIsPosting}
                                     onClick={() => editMutate({postId:postID, content: content})}
                                 >
-                                    <FaWrench className="h-6 w-6 md:h-8 md:w-8 hover:brightness-75 active:brightness-50 duration-300"/>
+                                    <FaWrench className="h-6 w-6 md:h-8 md:w-8 hover:brightness-75 active:brightness-50 duration-200"/>
                                 </button>
                             }
                             

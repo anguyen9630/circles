@@ -98,7 +98,7 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
 
     return (
         <div className={`w-full`}>
-            <div className={`w-full relative bg-gray-700 hover:bg-gray-900 duration-300 h-fit border-b-2 p-1 pr-3 md:py-3 md:pl-0 md:pr-9 flex justify-between`}>
+            <div className={`w-full relative bg-gray-700 hover:bg-gray-900 duration-300 h-fit border-b-2 px-1 py-3 pr-3 md:pl-0 md:pr-9 flex justify-between z-10`}>
                 <div className="static w-1/6 md:static flex justify-center">
                     <button className=" h-10 w-10 md:h-12 md:w-12">
                         <Image src={post.user.profileImage || ""} alt="user image" width={1050} height={1050} className=" rounded-full" />
@@ -148,7 +148,7 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
                             {likeCount > 0 && <p className={`duration-200 text-sm ${like? 'text-rose-700' : 'text-gray-400'} `}>{likeCount}</p>}
                             {throwConfetti && <ConfettiExplosion className="absolute" force={0.6} duration={2000} particleCount={10} width={200}/>}
                         </div>
-                        <button onClick={()=>setReplyState(!replyState)}>
+                        <button onClick={()=>{if (sessionUser){setReplyState(!replyState)} else {void signIn()}}}>
                             <BsFillChatDotsFill 
                             className={`h-4 w-4 hover:scale-125 active:scale-150 fill-gray-400 hover:fill-violet-600 duration-200`}/>
                         </button>

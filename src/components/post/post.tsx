@@ -92,8 +92,6 @@ export const SinglePost : React.FC<PostProps> = ({sessionUser, post, setFormStat
     const [throwConfetti, setThrowConfetti] = useState(false);
     const [replyState, setReplyState] = useState(false);
     const [replyInput, setReplyInput] = useState("");
-
-    let replyInputPlaceholderRender = null;
     dayjs.extend(relativeTime);
 
     return (

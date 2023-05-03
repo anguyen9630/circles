@@ -3,21 +3,21 @@ import { Fragment, useEffect, useRef } from 'react'
 import { FaPaperPlane } from 'react-icons/fa';
 import { RxCrossCircled } from 'react-icons/rx'
 
-function closeWhenClickOutside(ref: React.MutableRefObject<any>, setReplyState : React.Dispatch<React.SetStateAction<boolean>>) {
+function useCloseWhenClickOutside(ref: React.MutableRefObject<HTMLDivElement>, setReplyState : React.Dispatch<React.SetStateAction<boolean>>) {
     useEffect(() => {
         /**
          * Alert if clicked on outside of element
          */
         function handleClickOutside(event: MouseEvent) {
-        if (ref.current && !ref.current.contains(event.target)) {
+        if (ref.current && !ref.current.contains(event.target as Node)) {
             setReplyState(false)
         }
         }
         // Bind the event listener
-        document.addEventListener("mousedown", handleClickOutside);
+        document.addEventListener("click", handleClickOutside);
         return () => {
         // Unbind the event listener on clean up
-        document.removeEventListener("mousedown", handleClickOutside);
+        document.removeEventListener("click", handleClickOutside);
         };
     }, [ref]);
 }
@@ -31,8 +31,8 @@ interface ReplyWizardProps {
 
 export const ReplyWizard : React.FC<ReplyWizardProps> = ( {replyState, setReplyState, replyInput, setReplyInput} ) => {
     
-    const wizardRef = useRef(null);
-    closeWhenClickOutside(wizardRef, setReplyState);
+    const wizardRef = useRef() as React.MutableRefObject<HTMLDivElement>;
+    useCloseWhenClickOutside(wizardRef, setReplyState);
 
     return (
         

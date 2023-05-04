@@ -6,7 +6,7 @@ import { RxCrossCircled } from 'react-icons/rx'
 function useCloseWhenClickOutside(ref: React.MutableRefObject<HTMLDivElement>, setReplyState : React.Dispatch<React.SetStateAction<boolean>>) {
     useEffect(() => {
         /**
-         * Alert if clicked on outside of element
+         * Close wizard when clicked outside of element
          */
         function handleClickOutside(event: MouseEvent) {
         if (ref.current && !ref.current.contains(event.target as Node)) {
@@ -48,7 +48,7 @@ export const ReplyWizard : React.FC<ReplyWizardProps> = ( {replyState, setReplyS
             leaveTo="-translate-y-1/2 opacity-0">
             <div ref={wizardRef} className=" w-full p-3 gap-3 bg-transparent flex justify-center items-start z-0">
                     <div className="w-5/6 md:w-4/6 py-2 px-3 h-fit bg-gray-700 rounded-xl relative">
-                        {(replyInput === "") && 
+                        {(replyInput.length === 0) && 
                             <div id="replyPlaceHolder" className="absolute pointer-events-none text-[#999999]">Reply to the post~</div>}
                         <div contentEditable 
                             className="focus:outline-none h-fit min-h-[3.25rem] break-words align-middle"
@@ -57,7 +57,7 @@ export const ReplyWizard : React.FC<ReplyWizardProps> = ( {replyState, setReplyS
 
                     <div className="grid grid-cols-1 grid-rows-2 gap-3">
                         <button 
-                            disabled={replyInput === ""} 
+                            disabled={replyInput.length === 0} 
                             className='hover:opacity-75 active:opacity-60 text-violet-600 duration-200 disabled:cursor-not-allowed disabled:opacity-30'>
                                 <FaPaperPlane className="h-7 w-7"/>
                             </button>

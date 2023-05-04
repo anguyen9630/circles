@@ -46,7 +46,7 @@ export const ContextMenu : React.FC<ContextMenuProps> = ({post, setFormState, se
                 leaveTo="transform opacity-0 scale-95"
             >
                 
-                <Menu.Items className="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-slate-100 rounded-md bg-slate-800 shadow-lg ring-1 ring-black z-40 ring-opacity-5 focus:outline-none">
+                <Menu.Items className="absolute right-0 mt-2 w-36 origin-top-right divide-y divide-slate-100 rounded-md bg-slate-800 shadow-lg ring-1 ring-black z-30 ring-opacity-5 focus:outline-none">
                     <div className="px-1 py-1 ">
                         <Menu.Item>
                         {({ active }) => (
